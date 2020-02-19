@@ -18,13 +18,27 @@ class ProjectTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        $attributes = [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph
-        ];
-
+        $attributes = factory('App\Project')->raw();
         $this->post('/projects', $attributes)->assertRedirect('/projects');
         $this->assertDatabaseHas('projects', $attributes);
         $this->get('/projects')->assertSee($attributes['title']);
+    }
+
+    /**
+     * @test
+     */
+    public function a_project_requires_a_title()
+    {
+        $attributes = factory('App\Project')->raw(['title' => '']);
+        $this->post('/projects', $attributes)->assertSessionHasErrors('title');
+    }
+
+    /**
+     * @test
+     */
+    public function a_project_requires_a_description()
+    {
+        $attributes = factory('App\Project')->raw(['description' => '']);
+        $this->post('/projects', $attributes)->assertSessionHasErrors('description');
     }
 }
