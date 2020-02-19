@@ -61,9 +61,10 @@ class ProjectTest extends TestCase
     /**
      * @test
      */
-    public function a_user_can_view_a_project()
+    public function only_authenticated_user_can_view_project()
     {
         $this->withoutExceptionHandling();
+        $this->actingAs(factory('App\User')->create());
         $project = factory('App\Project')->create();
         $this->get($project->path())
             ->assertSee($project->title)
