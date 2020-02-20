@@ -1,11 +1,10 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-    <title>Projects</title>
-</head>
-<body>
-    <h1>Projects</h1>
+@extends('layouts.app')
+
+@section('content')
+    <div style="display: flex; align-items: center">
+        <h1 style="margin-right: auto">Projects</h1>
+        <a href="/projects/create">New project</a>
+    </div>
     <ul>
         @forelse($projects as $project)
             <li>
@@ -17,5 +16,4 @@
             <li>No project yet.</li>
         @endforelse
     </ul>
-</body>
-</html>
+@endsection
