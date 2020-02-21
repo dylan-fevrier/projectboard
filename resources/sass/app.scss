@@ -4,3 +4,12 @@
 @tailwind components;
 
 @tailwind utilities;
+
+.button {
+    @apply rounded-md text-sm py-2 px-4;
+}
+
+.button-blue {
+    @apply bg-blue text-white;
+    box-shadow: 0 2px 7px 0 #b0eaff;
+}
