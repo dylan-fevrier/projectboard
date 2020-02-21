@@ -4,8 +4,8 @@
     <header class="flex items-center mb-4 py-4 mx-4 lg:mx-0">
         <div class="flex w-full items-end">
             <p class="text-grey text-sm font mr-2">
-                <a href="/projects">My Projects </a>
-                / {{ $project->title }}
+                <a href="/projects" class="text-gray-700 hover:underline focus:underline">My Projects</a>
+                 / {{ $project->title }}
             </p>
         </div>
     </header>
