@@ -30,4 +30,15 @@ class ProjectTaskTest extends TestCase
         $this->get($project->path())
             ->assertSee($task['body']);
     }
+
+    /**
+     * @test
+     */
+    public function a_task_require_a_body()
+    {
+        $this->signIn();
+        $project = factory(Project::class)->create(['owner_id' => auth()->id()]);
+        $this->post($project->path() . '/tasks', [])
+            ->assertSessionHasErrors('body');
+    }
 }
