@@ -18,8 +18,9 @@
                         <h2 class="text-grey text-sm uppercase text-lg">Tasks</h2>
                         <a href="/projects/create" class="button button-blue">New task</a>
                     </div>
-                    <div class="card mb-2">one task</div>
-                    <div class="card">one task</div>
+                    @foreach($project->tasks as $task)
+                        <div class="card mb-2">{{ $task->body }}</div>
+                    @endforeach
                 </section>
                 <section>
                     <h2 class="text-grey text-sm uppercase text-lg mb-2">General Notes</h2>
