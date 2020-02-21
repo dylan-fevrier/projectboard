@@ -13,3 +13,11 @@
     @apply bg-blue text-white;
     box-shadow: 0 2px 7px 0 #b0eaff;
 }
+
+.card {
+    @apply bg-white rounded-md shadow p-6;
+}
+
+.card-title {
+    @apply font-normal text-xl py-4 -ml-6 border-l-4 border-blue-light pl-5 mb-2;
+}
