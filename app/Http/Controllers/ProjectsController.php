@@ -8,12 +8,23 @@ use Illuminate\Http\Request;
 class ProjectsController extends Controller
 {
 
+    /**
+     * View all projects.
+     *
+     * @return \Illuminate\Contracts\View\Factory
+     */
     public function index()
     {
         $projects = auth()->user()->projects;
         return view('projects.index', compact('projects'));
     }
 
+    /**
+     * Show a project.
+     *
+     * @param Project $project
+     * @return \Illuminate\Contracts\View\Factory
+     */
     public function show(Project $project)
     {
         if (auth()->user()->isNot($project->owner)) {
@@ -22,11 +33,21 @@ class ProjectsController extends Controller
         return view('projects.show', compact('project'));
     }
 
+    /**
+     * Create a new project.
+     *
+     * @return \Illuminate\Contracts\View\Factory
+     */
     public function create()
     {
         return view('projects.create');
     }
 
+    /**
+     * Persist Project.
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function store()
     {
         $attributes = request()->validate([
@@ -34,8 +55,8 @@ class ProjectsController extends Controller
             'description' => 'required',
         ]);
 
-        auth()->user()->projects()->create($attributes);
+        $project = auth()->user()->projects()->create($attributes);
 
-        return redirect('/projects');
+        return redirect($project->path());
     }
 }
