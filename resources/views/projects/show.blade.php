@@ -19,7 +19,16 @@
                         <a href="/projects/create" class="button button-blue">New task</a>
                     </div>
                     @foreach($project->tasks as $task)
-                        <div class="card mb-2">{{ $task->body }}</div>
+                        <div class="card mb-2">
+                            <form action="{{ $project->path() . '/tasks/' . $task->id }}" method="POST">
+                                @method('PATCH')
+                                @csrf
+                                <div class="flex items-center">
+                                    <input type="text" value="{{ $task->body }}" name="body" class="w-full">
+                                    <input type="checkbox" name="completed" onChange="this.form.submit()" {{ $task->completed ? 'checked' : '' }})>
+                                </div>
+                            </form>
+                        </div>
                     @endforeach
                         <form action="{{ $project->path() . '/tasks' }}" method="post">
                             @csrf
