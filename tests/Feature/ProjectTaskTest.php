@@ -77,4 +77,18 @@ class ProjectTaskTest extends TestCase
             ->assertForbidden();
         $this->assertDatabaseMissing('tasks', ['body' => 'Test task']);
     }
+
+    /**
+     * @test
+     */
+    public function only_the_owner_of_project_may_update_a_task()
+    {
+        $this->signIn();
+        $project = factory(Project::class)->create();
+        $task = $project->addTask(['body' => 'test task']);
+        $this->assertDatabaseHas('tasks', ['body' => 'test task']);
+        $this->patch($task->path(), ['body' => 'Test task update'])
+            ->assertForbidden();
+        $this->assertDatabaseMissing('tasks', ['body' => 'Test task update']);
+    }
 }
