@@ -9,6 +9,12 @@ use Illuminate\Http\Request;
 class ProjectTaskController extends Controller
 {
 
+    /**
+     * Persist one task for project.
+     *
+     * @param Project $project
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function store(Project $project)
     {
         if (auth()->user()->isNot($project->owner)) {
@@ -22,6 +28,13 @@ class ProjectTaskController extends Controller
         return redirect($project->path());
     }
 
+    /**
+     * Update task for project.
+     *
+     * @param Project $project
+     * @param Task $task
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function update(Project $project, Task $task)
     {
         if (auth()->user()->isNot($project->owner)) {
