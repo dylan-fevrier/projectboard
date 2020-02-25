@@ -1,6 +1,48 @@
 @extends('layouts.app')
 
 @section('content')
+    <form action="{{ route('register') }}" class="card lg:w-1/2 lg:mx-auto" method="POST">
+
+        <h1 class="text-2xl text-center mb-10">Register</h1>
+
+        @csrf
+
+        <div class="field mb-6">
+            <label for="email" class="text-sm mb-2 block">Email</label>
+            <div class="form-control">
+                <input type="text" name="email" class="w-full p-2 rounded border border-gray-400" id="email">
+            </div>
+        </div>
+
+        <div class="field mb-6">
+            <label for="name" class="text-sm mb-2 block">Name</label>
+            <div class="form-control">
+                <input type="text" name="name" class="w-full p-2 rounded border border-gray-400" id="name">
+            </div>
+        </div>
+
+        <div class="field mb-6">
+            <label for="password-confirm" class="text-sm mb-2 block">Password</label>
+            <div class="form-control">
+                <input type="password" name="password" class="w-full p-2 rounded border border-gray-400" id="password">
+            </div>
+        </div>
+
+        <div class="field mb-6">
+            <label for="password-confirm" class="text-sm mb-2 block">Confirm password</label>
+            <div class="form-control">
+                <input type="password" name="password-confirm" class="w-full p-2 rounded border border-gray-400" id="password-confirm">
+            </div>
+        </div>
+
+        <div class="">
+            <button class="button button-blue" type="submit">Register</button>
+        </div>
+
+    </form>
+@endsection
+
+@section('')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

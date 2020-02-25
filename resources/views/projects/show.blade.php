@@ -37,7 +37,16 @@
                 </section>
                 <section>
                     <h2 class="text-grey text-sm uppercase text-lg mb-3">General Notes</h2>
-                    <textarea class="card w-full" style="min-height: 200px">Lorem ipsum.</textarea>
+                    <form action="{{ $project->path() }}" method="POST">
+                        @method('PATCH')
+                        @csrf
+                        <textarea
+                            class="card w-full"
+                            style="min-height: 200px"
+                            placeholder="Anything special that you want to make a note of ?"
+                            name="notes">{{ $project->notes }}</textarea>
+                        <button class="button button-blue">Save</button>
+                    </form>
                 </section>
             </div>
             <div class="lg:w-1/3 px-4 lg:py-12">

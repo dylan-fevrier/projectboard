@@ -53,11 +53,23 @@ class ProjectsController extends Controller
         $attributes = request()->validate([
             'title' => 'required',
             'description' => 'required',
-            'notes' => 'max:255'
+            'notes' => 'min:3'
         ]);
 
         $project = auth()->user()->projects()->create($attributes);
 
+        return redirect($project->path());
+    }
+
+    /**
+     * Update a project.
+     *
+     * @param Project $project
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function update(Project $project)
+    {
+        $project->update(request(['notes']));
         return redirect($project->path());
     }
 }

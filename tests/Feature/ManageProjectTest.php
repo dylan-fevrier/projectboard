@@ -37,7 +37,7 @@ class ManageProjectTest extends TestCase
 
         $attributes = [
             'title' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
+            'description' => $this->faker->sentence,
             'notes' => 'General notes here.'
         ];
         $response = $this->post('/projects', $attributes);
@@ -50,7 +50,20 @@ class ManageProjectTest extends TestCase
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description'])
             ->assertSee($attributes['notes']);
+    }
 
+    /**
+     * @test
+     */
+    public function a_user_can_update_their_projects()
+    {
+        $this->withoutExceptionHandling();
+        $this->signIn();
+        $project = factory(Project::class)->create(['owner_id' => auth()->user()->id]);
+        $this->patch($project->path(), ['notes' => 'New note for project']);
+        $this->assertDatabaseHas('projects', ['id' => $project->id, 'notes' => 'New note for project']);
+        $this->get($project->path())
+            ->assertSee('New note for project');
     }
 
     /**
