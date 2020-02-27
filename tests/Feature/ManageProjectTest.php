@@ -6,6 +6,7 @@ use App\Project;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
+use Illuminate\Support\Str;
 
 class ManageProjectTest extends TestCase
 {
@@ -96,7 +97,7 @@ class ManageProjectTest extends TestCase
         $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
         $this->get($project->path())
             ->assertSee($project->title)
-            ->assertSee($project->description);
+            ->assertSee(Str::limit($project->description, 200));
     }
 
     /**
@@ -108,5 +109,17 @@ class ManageProjectTest extends TestCase
         $project = factory('App\Project')->create();
         $this->get($project->path())
             ->assertForbidden();
+    }
+
+    /**
+     * @test
+     */
+    public function an_authenticated_user_cannot_update_the_projects_of_others()
+    {
+        $this->signIn();
+        $project = factory('App\Project')->create();
+        $this->patch($project->path(), ['notes' => "Test update an authenticated update"])
+            ->assertForbidden();
+        $this->assertDatabaseMissing('projects', ['notes' => 'Test update an authenticated update']);
     }
 }

@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Project;
 use App\Task;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 
 class ProjectTaskController extends Controller
 {
@@ -13,13 +15,13 @@ class ProjectTaskController extends Controller
      * Persist one task for project.
      *
      * @param Project $project
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
      */
     public function store(Project $project)
     {
-        if (auth()->user()->isNot($project->owner)) {
-            abort(403);
-        }
+        $this->authorize('access', $project);
+
         $attributes = request()->validate([
             'body' => 'required'
         ]);
@@ -33,13 +35,13 @@ class ProjectTaskController extends Controller
      *
      * @param Project $project
      * @param Task $task
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
      */
     public function update(Project $project, Task $task)
     {
-        if (auth()->user()->isNot($project->owner)) {
-            abort(403);
-        }
+        $this->authorize('access', $project);
+
         $task->update([
             'body' => request('body'),
             'completed' => request()->has('completed')

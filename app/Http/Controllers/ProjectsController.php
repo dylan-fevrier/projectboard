@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Project;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\View\View;
 
 class ProjectsController extends Controller
 {
@@ -11,7 +15,7 @@ class ProjectsController extends Controller
     /**
      * View all projects.
      *
-     * @return \Illuminate\Contracts\View\Factory
+     * @return Factory
      */
     public function index()
     {
@@ -23,20 +27,20 @@ class ProjectsController extends Controller
      * Show a project.
      *
      * @param Project $project
-     * @return \Illuminate\Contracts\View\Factory
+     * @return Factory|View
+     * @throws AuthorizationException
      */
     public function show(Project $project)
     {
-        if (auth()->user()->isNot($project->owner)) {
-            abort(403);
-        }
+        $this->authorize('access', $project);
+
         return view('projects.show', compact('project'));
     }
 
     /**
      * Create a new project.
      *
-     * @return \Illuminate\Contracts\View\Factory
+     * @return Factory
      */
     public function create()
     {
@@ -46,7 +50,7 @@ class ProjectsController extends Controller
     /**
      * Persist Project.
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return RedirectResponse
      */
     public function store()
     {
@@ -57,18 +61,20 @@ class ProjectsController extends Controller
         ]);
 
         $project = auth()->user()->projects()->create($attributes);
-
         return redirect($project->path());
     }
 
     /**
-     * Update a project.
+     * Update project.
      *
      * @param Project $project
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return RedirectResponse|Redirector
+     * @throws AuthorizationException
      */
     public function update(Project $project)
     {
+        $this->authorize('access', $project);
+
         $project->update(request(['notes']));
         return redirect($project->path());
     }
