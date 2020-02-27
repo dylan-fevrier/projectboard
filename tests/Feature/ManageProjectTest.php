@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Project;
+use Facades\Tests\Setup\ProjectFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -41,12 +42,12 @@ class ManageProjectTest extends TestCase
             'description' => $this->faker->sentence,
             'notes' => 'General notes here.'
         ];
+
         $response = $this->post('/projects', $attributes);
         $project = Project::where($attributes)->first();
 
         $response->assertRedirect($project->path());
 
-        $this->assertDatabaseHas('projects', $attributes);
         $this->get($project->path())
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description'])
@@ -58,13 +59,15 @@ class ManageProjectTest extends TestCase
      */
     public function a_user_can_update_their_projects()
     {
-        $this->withoutExceptionHandling();
-        $this->signIn();
-        $project = factory(Project::class)->create(['owner_id' => auth()->user()->id]);
-        $this->patch($project->path(), ['notes' => 'New note for project']);
-        $this->assertDatabaseHas('projects', ['id' => $project->id, 'notes' => 'New note for project']);
-        $this->get($project->path())
-            ->assertSee('New note for project');
+        $project = ProjectFactory::ownedBy($this->signIn())->create();
+
+        $this->patch($project->path(), ['notes' => 'New note for project'])
+            ->assertRedirect($project->path());
+
+        $this->assertDatabaseHas('projects', [
+            'id' => $project->id,
+            'notes' => 'New note for project'
+        ]);
     }
 
     /**
@@ -92,9 +95,7 @@ class ManageProjectTest extends TestCase
      */
     public function a_user_can_view_their_project()
     {
-        $this->signIn();
-        $this->withoutExceptionHandling();
-        $project = factory('App\Project')->create(['owner_id' => auth()->id()]);
+        $project = ProjectFactory::ownedBy($this->signIn())->create();
         $this->get($project->path())
             ->assertSee($project->title)
             ->assertSee(Str::limit($project->description, 200));
@@ -106,7 +107,7 @@ class ManageProjectTest extends TestCase
     public function an_authenticated_user_cannot_view_the_projects_of_others()
     {
         $this->signIn();
-        $project = factory('App\Project')->create();
+        $project = ProjectFactory::create();
         $this->get($project->path())
             ->assertForbidden();
     }

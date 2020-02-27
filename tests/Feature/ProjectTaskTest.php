@@ -6,6 +6,7 @@ use App\Project;
 use App\Task;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Facades\Tests\Setup\ProjectFactory;
 use Tests\TestCase;
 
 class ProjectTaskTest extends TestCase
@@ -19,9 +20,8 @@ class ProjectTaskTest extends TestCase
     public function a_project_can_have_task()
     {
         $this->withoutExceptionHandling();
-        $this->signIn();
-
-        $project = factory(Project::class)->create(['owner_id' => auth()->id()]);
+        $project = ProjectFactory::ownedBy($this->signIn())
+            ->create();
 
         $task = [
             'body' => 'Lorem ipsum facto set'
@@ -37,14 +37,11 @@ class ProjectTaskTest extends TestCase
      */
     public function a_task_can_be_updated()
     {
-        $this->withoutExceptionHandling();
-        $this->signIn();
+        $project = ProjectFactory::ownedBy($this->signIn())
+            ->withTasks(1)
+            ->create();
 
-        $project = auth()->user()->projects()->create(
-            factory(Project::class)->raw()
-        );
-        $task = $project->addTask(['body' => 'Test task']);
-        $this->patch($project->path() . '/tasks/' . $task->id, [
+        $this->patch($project->tasks->first()->path(), [
             'body' => 'changed',
             'completed' => true
         ]);
@@ -59,9 +56,11 @@ class ProjectTaskTest extends TestCase
      */
     public function a_task_require_a_body()
     {
-        $this->signIn();
-        $project = factory(Project::class)->create(['owner_id' => auth()->id()]);
-        $attributes = factory(Task::class)->raw(['body' => '']);
+        $project = ProjectFactory::ownedBy($this->signIn())->create();
+
+        $attributes = factory(Task::class)
+            ->raw(['body' => '']);
+
         $this->post($project->path() . '/tasks', $attributes)
             ->assertSessionHasErrors('body');
     }
@@ -84,10 +83,10 @@ class ProjectTaskTest extends TestCase
     public function only_the_owner_of_project_may_update_a_task()
     {
         $this->signIn();
-        $project = factory(Project::class)->create();
-        $task = $project->addTask(['body' => 'test task']);
-        $this->assertDatabaseHas('tasks', ['body' => 'test task']);
-        $this->patch($task->path(), ['body' => 'Test task update'])
+        $project = ProjectFactory::withTasks(1)
+            ->create();
+        $this->assertDatabaseHas('tasks', ['body' => $project->tasks->first()->body]);
+        $this->patch($project->tasks->first()->path(), ['body' => 'Test task update'])
             ->assertForbidden();
         $this->assertDatabaseMissing('tasks', ['body' => 'Test task update']);
     }
