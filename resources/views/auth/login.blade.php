@@ -10,14 +10,14 @@
         <div class="field mb-6">
             <label for="" class="text-sm mb-2 block">Email</label>
             <div class="form-control">
-                <input type="text" name="email" class="w-full p-2 rounded border border-gray-400">
+                <input type="text" name="email" class="input">
             </div>
         </div>
 
         <div class="field mb-6">
             <label for="" class="text-sm mb-2 block">Password</label>
             <div class="form-control">
-                <input type="password" name="password" class="w-full p-2 rounded border border-gray-400">
+                <input type="password" name="password" class="input">
             </div>
         </div>
 

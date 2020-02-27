@@ -21,3 +21,7 @@
 .card-title {
     @apply font-normal text-xl py-4 -ml-6 border-l-4 border-blue-light pl-5 mb-2;
 }
+
+.input {
+    @apply w-full p-2 rounded border border-gray-400;
+}

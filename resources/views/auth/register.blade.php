@@ -10,28 +10,28 @@
         <div class="field mb-6">
             <label for="email" class="text-sm mb-2 block">Email</label>
             <div class="form-control">
-                <input type="text" name="email" class="w-full p-2 rounded border border-gray-400" id="email">
+                <input type="text" name="email" class="input" id="email">
             </div>
         </div>
 
         <div class="field mb-6">
             <label for="name" class="text-sm mb-2 block">Name</label>
             <div class="form-control">
-                <input type="text" name="name" class="w-full p-2 rounded border border-gray-400" id="name">
+                <input type="text" name="name" class="input" id="name">
             </div>
         </div>
 
         <div class="field mb-6">
             <label for="password-confirm" class="text-sm mb-2 block">Password</label>
             <div class="form-control">
-                <input type="password" name="password" class="w-full p-2 rounded border border-gray-400" id="password">
+                <input type="password" name="password" class="input" id="password">
             </div>
         </div>
 
         <div class="field mb-6">
             <label for="password-confirm" class="text-sm mb-2 block">Confirm password</label>
             <div class="form-control">
-                <input type="password" name="password-confirm" class="w-full p-2 rounded border border-gray-400" id="password-confirm">
+                <input type="password" name="password-confirm" class="input" id="password-confirm">
             </div>
         </div>
 

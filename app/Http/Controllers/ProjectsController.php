@@ -7,6 +7,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 
 class ProjectsController extends Controller
@@ -48,24 +49,32 @@ class ProjectsController extends Controller
     }
 
     /**
-     * Persist Project.
+     * Persist project.
      *
-     * @return RedirectResponse
+     * @return RedirectResponse|Redirector
      */
     public function store()
     {
-        $attributes = request()->validate([
-            'title' => 'required',
-            'description' => 'required',
-            'notes' => 'min:3'
-        ]);
-
-        $project = auth()->user()->projects()->create($attributes);
+        $project = auth()->user()->projects()->create($this->validateProject());
         return redirect($project->path());
     }
 
     /**
-     * Update project.
+     * Edit a project.
+     *
+     * @param Project $project
+     * @return Factory|View
+     * @throws AuthorizationException
+     */
+    public function edit(Project $project)
+    {
+        $this->authorize('access', $project);
+
+        return view('projects.edit', compact('project'));
+    }
+
+    /**
+     * Update a project
      *
      * @param Project $project
      * @return RedirectResponse|Redirector
@@ -75,7 +84,16 @@ class ProjectsController extends Controller
     {
         $this->authorize('access', $project);
 
-        $project->update(request(['notes']));
+        $project->update($this->validateProject());
         return redirect($project->path());
+    }
+
+    protected function validateProject()
+    {
+        return request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'notes' => 'min:3'
+        ]);
     }
 }

@@ -2,12 +2,17 @@
 
 @section('content')
     <header class="flex items-center mb-4 py-4 mx-4 lg:mx-0">
-        <div class="flex w-full items-end">
+
+        <div class="flex w-full justify-between items-end">
+
             <p class="text-grey text-sm font mr-2">
                 <a href="/projects" class="text-gray-700 hover:underline focus:underline">My Projects</a>
                  / {{ $project->title }}
             </p>
+            <a href="{{ $project->path() . "/edit" }}" class="button button-blue">Edit project</a>
+
         </div>
+
     </header>
 
     <main>
@@ -36,17 +41,22 @@
                         </form>
                 </section>
                 <section>
+
                     <h2 class="text-grey text-sm uppercase text-lg mb-3">General Notes</h2>
+
                     <form action="{{ $project->path() }}" method="POST">
                         @method('PATCH')
                         @csrf
+
                         <textarea
                             class="card w-full"
                             style="min-height: 200px"
                             placeholder="Anything special that you want to make a note of ?"
                             name="notes">{{ $project->notes }}</textarea>
+
                         <button class="button button-blue">Save</button>
                     </form>
+
                 </section>
             </div>
             <div class="lg:w-1/3 px-4 lg:py-12">

@@ -13619,6 +13619,14 @@ video {
   margin-bottom: 0.5rem;
 }
 
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  border-color: #cbd5e0;
+}
+
 @media (min-width: 640px) {
   .sm\:sr-only {
     position: absolute;
