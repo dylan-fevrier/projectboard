@@ -22,11 +22,7 @@ class ProjectTaskController extends Controller
     {
         $this->authorize('access', $project);
 
-        $attributes = request()->validate([
-            'body' => 'required'
-        ]);
-
-        $project->addTask($attributes);
+        $project->addTask($this->validateTask());
         return redirect($project->path());
     }
 
@@ -42,10 +38,26 @@ class ProjectTaskController extends Controller
     {
         $this->authorize('access', $project);
 
-        $task->update([
-            'body' => request('body'),
-            'completed' => request()->has('completed')
-        ]);
+        $task->update($this->validateTask());
+
+        if (request('completed')) {
+            $task->complete();
+        } else {
+            $task->incomplete();
+        }
         return redirect($project->path());
+    }
+
+    /**
+     * Validate the request attributes.
+     *
+     * @return array
+     */
+    protected function validateTask()
+    {
+        return request()->validate([
+            'body' => 'required',
+            'completed' => 'nullable'
+        ]);
     }
 }
