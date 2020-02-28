@@ -4,10 +4,9 @@ namespace Tests\Feature;
 
 use Facades\Tests\Setup\ProjectFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class ActivityTest extends TestCase
+class RecordActivityTest extends TestCase
 {
 
     use RefreshDatabase;
@@ -15,7 +14,7 @@ class ActivityTest extends TestCase
     /**
      * @test
      */
-    public function creating_a_project_records_activity()
+    public function creating_a_project()
     {
         $project = ProjectFactory::create();
 
@@ -27,7 +26,7 @@ class ActivityTest extends TestCase
     /**
      * @test
      */
-    public function updating_a_project_records_activity()
+    public function updating_a_project()
     {
         $project = ProjectFactory::create();
 
@@ -40,7 +39,7 @@ class ActivityTest extends TestCase
     /**
      * @test
      */
-    public function creating_a_new_task_records_project_activity()
+    public function creating_a_new_task()
     {
         $project = ProjectFactory::create();
 
@@ -53,17 +52,38 @@ class ActivityTest extends TestCase
     /**
      * @test
      */
-    public function completing_a_new_task_records_project_activity()
+    public function completing_a_new_task()
     {
         $project = ProjectFactory::withTasks(1)
             ->ownedBy($this->signIn())
             ->create();
 
         $project->tasks[0]->update([
-            'completed' => 1
+            'completed' => true
         ]);
 
         $this->assertCount(3, $project->activities);
         $this->assertEquals('complete_task', $project->activities->last()->description);
+    }
+
+    /**
+     * @test
+     */
+    public function incomplete_task()
+    {
+        $project = ProjectFactory::withTasks(1)
+            ->ownedBy($this->signIn())
+            ->create();
+
+        $project->tasks[0]->update([
+            'completed' => true
+        ]);
+
+        $project->task[0]->update([
+            'completed' => false
+        ]);
+
+        $this->assertCount(4, $project->activities);
+        $this->assertEquals('incomplete_task', $project->activities->last()->description);
     }
 }
