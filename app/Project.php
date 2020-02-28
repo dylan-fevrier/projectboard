@@ -33,4 +33,12 @@ class Project extends Model
     {
         return $this->tasks()->create($attributes);
     }
+
+    public function recordActivity(string $description)
+    {
+        Activity::create([
+            'project_id' => $this->id,
+            'description' => $description
+        ]);
+    }
 }

@@ -11,6 +11,10 @@ class Task extends Model
 
     protected $touches = ['project'];
 
+    protected $cast = [
+        'completed' => 'boolean'
+    ];
+
     public function path()
     {
         return '/projects/' . $this->project->id . '/tasks/' . $this->id;
