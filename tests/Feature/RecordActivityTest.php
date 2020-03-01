@@ -58,8 +58,9 @@ class RecordActivityTest extends TestCase
             ->ownedBy($this->signIn())
             ->create();
 
-        $project->tasks[0]->update([
-            'completed' => true
+        $this->patch($project->tasks->first()->path(), [
+            'completed' => true,
+            'body' => 'New Body'
         ]);
 
         $this->assertCount(3, $project->activities);
@@ -71,16 +72,19 @@ class RecordActivityTest extends TestCase
      */
     public function incomplete_task()
     {
+        $this->withoutExceptionHandling();
         $project = ProjectFactory::withTasks(1)
             ->ownedBy($this->signIn())
             ->create();
 
-        $project->tasks[0]->update([
-            'completed' => true
+        $this->patch($project->tasks->first()->path(), [
+            'completed' => true,
+            'body' => 'New Body'
         ]);
 
-        $project->task[0]->update([
-            'completed' => false
+        $this->patch($project->tasks->first()->path(), [
+            'completed' => false,
+            'body' => 'New Body'
         ]);
 
         $this->assertCount(4, $project->activities);

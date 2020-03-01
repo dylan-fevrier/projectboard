@@ -16,16 +16,4 @@ class TaskObserver
     {
         $task->project->recordActivity('create_task');
     }
-
-    /**
-     * Handle the task "updated" event.
-     *
-     * @param Task $task
-     * @return void
-     */
-    public function updated(Task $task)
-    {
-        if (!$task->completed) return;
-        $task->project->recordActivity('complete_task');
-    }
 }
