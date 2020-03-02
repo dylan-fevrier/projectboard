@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Task;
 use Facades\Tests\Setup\ProjectFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -47,12 +48,14 @@ class RecordActivityTest extends TestCase
 
         $this->assertCount(2, $project->activities);
         $this->assertEquals('create_task', $project->activities->last()->description);
+        $this->assertInstanceOf(Task::class, $project->activities->last()->subject);
+        $this->assertEquals('Some task', $project->activities->last()->subject->body);
     }
 
     /**
      * @test
      */
-    public function completing_a_new_task()
+    public function completing_a_task()
     {
         $project = ProjectFactory::withTasks(1)
             ->ownedBy($this->signIn())
@@ -65,12 +68,13 @@ class RecordActivityTest extends TestCase
 
         $this->assertCount(3, $project->activities);
         $this->assertEquals('complete_task', $project->activities->last()->description);
+        $this->assertInstanceOf(Task::class, $project->activities->last()->subject);
     }
 
     /**
      * @test
      */
-    public function incomplete_task()
+    public function incompleting_a_task()
     {
         $project = ProjectFactory::withTasks(1)
             ->ownedBy($this->signIn())
@@ -88,6 +92,7 @@ class RecordActivityTest extends TestCase
 
         $this->assertCount(4, $project->activities);
         $this->assertEquals('incomplete_task', $project->activities->last()->description);
+        $this->assertInstanceOf(Task::class, $project->activities->last()->subject);
     }
 
     /**
