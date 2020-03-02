@@ -6,6 +6,7 @@ use App\Project;
 
 class ProjectObserver
 {
+
     /**
      * Handle the project "created" event.
      *
@@ -15,6 +16,11 @@ class ProjectObserver
     public function created(Project $project)
     {
         $project->recordActivity( 'created');
+    }
+
+    public function updating(Project $project)
+    {
+        $project->old = $project->getOriginal();
     }
 
     /**

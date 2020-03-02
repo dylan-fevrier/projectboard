@@ -61,7 +61,6 @@ class ManageProjectTest extends TestCase
      */
     public function a_user_can_update_their_projects()
     {
-        $this->withoutExceptionHandling();
         $project = ProjectFactory::ownedBy($this->signIn())->create();
 
         $this->patch($project->path(), [

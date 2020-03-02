@@ -7,6 +7,12 @@
 
         @csrf
 
+        @if($errors)
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        @endif
+
         <div class="field mb-6">
             <label for="email" class="text-sm mb-2 block">Email</label>
             <div class="form-control">
@@ -29,9 +35,9 @@
         </div>
 
         <div class="field mb-6">
-            <label for="password-confirm" class="text-sm mb-2 block">Confirm password</label>
+            <label for="password_confirmation" class="text-sm mb-2 block">Confirm password</label>
             <div class="form-control">
-                <input type="password" name="password-confirm" class="input" id="password-confirm">
+                <input type="password" name="password_confirmation" class="input" id="password_confirmation">
             </div>
         </div>
 
