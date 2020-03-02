@@ -54,7 +54,6 @@ class ProjectTaskController extends Controller
     {
         return request()->validate([
             'body' => 'required',
-            'completed' => 'nullable'
         ]);
     }
 }

@@ -21,7 +21,6 @@
                 <section class="mb-6">
                     <div class="text-grey mb-3 flex justify-between items-end">
                         <h2 class="text-grey text-sm uppercase text-lg">Tasks</h2>
-                        <a href="/projects/create" class="button button-blue">New task</a>
                     </div>
                     @foreach($project->tasks as $task)
                         <div class="card mb-2">
@@ -59,8 +58,9 @@
 
                 </section>
             </div>
-            <div class="lg:w-1/3 px-4 lg:py-12">
+            <div class="lg:w-1/3 px-4 lg:py-10">
                 @include('projects.card')
+                @include('projects.activity')
             </div>
         </div>
     </main>
