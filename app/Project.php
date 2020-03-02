@@ -3,14 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Arr;
 
 class Project extends Model
 {
 
-    protected $guarded = [];
+    use RecordsActivity;
 
-    public $old = [];
+    protected $guarded = [];
 
     public function path()
     {
@@ -35,24 +34,5 @@ class Project extends Model
     public function addTask(array $attributes)
     {
         return $this->tasks()->create($attributes);
-    }
-
-    public function recordActivity(string $description)
-    {
-        $this->activities()->create([
-            'description' => $description,
-            'changes' => $this->activityChanges($description)
-        ]);
-    }
-
-    protected function activityChanges(string $description)
-    {
-        if ($description !== 'updated') {
-            return null;
-        }
-        return [
-            'before' => Arr::except(array_diff($this->old, $this->getAttributes()), 'updated_at'),
-            'after' => Arr::except($this->getChanges(), 'updated_at')
-        ];
     }
 }

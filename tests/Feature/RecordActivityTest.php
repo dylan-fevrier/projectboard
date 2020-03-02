@@ -58,7 +58,7 @@ class RecordActivityTest extends TestCase
         $project->addTask(['body' => 'Some task']);
 
         $this->assertCount(2, $project->activities);
-        $this->assertEquals('create_task', $project->activities->last()->description);
+        $this->assertEquals('created_task', $project->activities->last()->description);
         $this->assertInstanceOf(Task::class, $project->activities->last()->subject);
         $this->assertEquals('Some task', $project->activities->last()->subject->body);
     }
@@ -78,7 +78,7 @@ class RecordActivityTest extends TestCase
         ]);
 
         $this->assertCount(3, $project->activities);
-        $this->assertEquals('complete_task', $project->activities->last()->description);
+        $this->assertEquals('completed_task', $project->activities->last()->description);
         $this->assertInstanceOf(Task::class, $project->activities->last()->subject);
     }
 
@@ -102,7 +102,7 @@ class RecordActivityTest extends TestCase
         ]);
 
         $this->assertCount(4, $project->activities);
-        $this->assertEquals('incomplete_task', $project->activities->last()->description);
+        $this->assertEquals('incompleted_task', $project->activities->last()->description);
         $this->assertInstanceOf(Task::class, $project->activities->last()->subject);
     }
 
@@ -116,6 +116,6 @@ class RecordActivityTest extends TestCase
         $project->tasks->first()->delete();
 
         $this->assertCount(3, $project->activities);
-        $this->assertEquals('delete_task', $project->activities->last()->description);
+        $this->assertEquals('deleted_task', $project->activities->last()->description);
     }
 }
