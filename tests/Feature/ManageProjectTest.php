@@ -147,4 +147,34 @@ class ManageProjectTest extends TestCase
             ->assertForbidden();
         $this->assertDatabaseMissing('projects', ['notes' => 'Test update an authenticated update']);
     }
+
+    /**
+     * @test
+     */
+    public function a_user_can_delete_a_project()
+    {
+        $this->withoutExceptionHandling();
+        $project = ProjectFactory::ownedBy($this->signIn())->create();
+
+        $this->delete($project->path())
+            ->assertRedirect('/projects');
+
+        $this->assertDatabaseMissing('projects', $project->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function unauthorized_cannot_delete_projects()
+    {
+        $project = ProjectFactory::create();
+
+        $this->delete($project->path())
+            ->assertRedirect('/login');
+
+        $this->signIn();
+
+        $this->delete($project->path())
+            ->assertStatus(403);
+    }
 }

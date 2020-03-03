@@ -89,6 +89,21 @@ class ProjectsController extends Controller
     }
 
     /**
+     * Delete project.
+     *
+     * @param Project $project
+     * @return RedirectResponse|Redirector
+     * @throws \Exception
+     */
+    public function destroy(Project $project)
+    {
+        $this->authorize('access', $project);
+
+        $project->delete();
+        return redirect('/projects');
+    }
+
+    /**
      * Validate the request attributes.
      *
      * @return array
