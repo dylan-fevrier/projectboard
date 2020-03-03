@@ -8,8 +8,16 @@ use Illuminate\Support\Arr;
 trait RecordsActivity
 {
 
+    /**
+     * Save the ols attributes
+     *
+     * @var array
+     */
     public $oldAttributes = [];
 
+    /**
+     * Boot trait.
+     */
     public static function bootRecordsActivity()
     {
         foreach (self::getRecordableEvents() as $event) {
@@ -26,6 +34,11 @@ trait RecordsActivity
         }
     }
 
+    /**
+     * Persist activity.
+     *
+     * @param string $description
+     */
     public function recordActivity(string $description)
     {
         $this->activities()->create([
@@ -35,6 +48,11 @@ trait RecordsActivity
         ]);
     }
 
+    /**
+     * Array of changes.
+     *
+     * @return array
+     */
     protected function activityChanges()
     {
         if ($this->wasChanged()) {
@@ -45,14 +63,22 @@ trait RecordsActivity
         }
     }
 
+    /**
+     * Activity description.
+     *
+     * @param string $description
+     * @return string
+     */
     protected function activityDescription(string $description)
     {
-        if (class_basename($this) !== 'Project') {
-            $description = "{$description}_" . strtolower(class_basename($this));
-        }
-        return $description;
+        return "{$description}_" . strtolower(class_basename($this));
     }
 
+    /**
+     * Recordable events. It's possible to rewrite in model.
+     *
+     * @return array
+     */
     protected static function getRecordableEvents()
     {
         if (isset(static::$recordableEvents)) {
