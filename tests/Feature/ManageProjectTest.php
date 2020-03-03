@@ -177,4 +177,19 @@ class ManageProjectTest extends TestCase
         $this->delete($project->path())
             ->assertStatus(403);
     }
+
+    /**
+     * @test
+     */
+    public function a_user_can_projects_have_been_invited_on_dashboard()
+    {
+        $user = $this->signIn();
+
+        $project = ProjectFactory::create();
+
+        $project->invite($user);
+
+        $this->get('/projects')
+            ->assertSee($project->title);
+    }
 }
