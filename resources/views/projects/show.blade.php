@@ -9,7 +9,20 @@
                 <a href="/projects" class="text-gray-700 hover:underline focus:underline">My Projects</a>
                  / {{ $project->title }}
             </p>
-            <a href="{{ $project->path() . "/edit" }}" class="button button-blue">Edit project</a>
+            <div class="flex">
+                @foreach($project->members as $member)
+                    <img src="{{ \App\Helper\BladeHelper::url_gravatar($member->email) }}"
+                         alt="{{ $member->name }}'s avatar"
+                         class="rounded-full mr-2"
+                         title="{{ $member->name }}">
+                @endforeach
+
+                <img src="{{ \App\Helper\BladeHelper::url_gravatar($project->owner->email) }}"
+                     alt="{{ $project->owner->name }}'s avatar"
+                     class="rounded-full"
+                     title="{{ $project->owner->name }}">
+                <a href="{{ $project->path() . "/edit" }}" class="button button-blue ml-5">Edit project</a>
+            </div>
 
         </div>
 
