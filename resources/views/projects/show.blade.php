@@ -29,6 +29,8 @@
     </header>
 
     <main>
+        @include('components.errors')
+
         <div class="lg:flex lg:-mx-4">
             <div class="lg:w-2/3 px-4 mb-8">
                 <section class="mb-6">
@@ -73,6 +75,11 @@
             </div>
             <div class="lg:w-1/3 px-4 lg:py-10">
                 @include('projects.card')
+
+                @can ('owner', $project)
+                    @include('projects.invite')
+                @endcan
+
                 @include('projects.activity')
             </div>
         </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProjectInvitationsRequest;
 use App\Project;
 use App\User;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -14,31 +15,15 @@ class ProjectInvitationsController extends Controller
     /**
      * Persist a new member on a project.
      *
+     * @param ProjectInvitationsRequest $request
      * @param Project $project
      * @return RedirectResponse|Redirector
-     * @throws AuthorizationException
      */
-    public function store(Project $project)
+    public function store(ProjectInvitationsRequest $request, Project $project)
     {
-        $this->authorize('owner', $project);
-
-        $this->validateRequest();
-
-        $user = User::whereEmail(request('email'))->first();
+        $user = User::whereEmail($request->email)->first();
 
         $project->invite($user);
         return redirect($project->path());
-    }
-
-    /**
-     * @return array
-     */
-    protected function validateRequest()
-    {
-        return request()->validate([
-            'email' => 'exists:users,email'
-        ], [
-            'email.exists' => 'The user you are inviting must have an account.'
-        ]);
     }
 }
