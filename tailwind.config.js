@@ -24,9 +24,6 @@ const backgroundColor = {
 
 module.exports = {
     theme: {
-        extend: {
-            colors: extendColors
-        },
         colors: colors,
         backgroundColor: backgroundColor,
     },
