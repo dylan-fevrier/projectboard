@@ -3,11 +3,16 @@
 @tailwind utilities;
 
 @import 'themes/light';
+@import 'themes/dark';
 
 @import 'components/button';
 @import 'components/card';
 
 .input {
-    @apply w-full p-2 rounded border border-muted-light;
+    @apply w-full p-2 rounded border border-muted-light bg-card;
 }
 
+body,
+button {
+    @apply text-default;
+}
