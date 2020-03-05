@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UpdateProjectRequest;
 use App\Project;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
@@ -97,7 +96,7 @@ class ProjectsController extends Controller
      */
     public function destroy(Project $project)
     {
-        $this->authorize('access', $project);
+        $this->authorize('owner', $project);
 
         $project->delete();
         return redirect('/projects');

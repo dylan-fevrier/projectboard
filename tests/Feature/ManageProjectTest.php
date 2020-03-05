@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Project;
+use App\User;
 use Facades\Tests\Setup\ProjectFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -33,24 +34,12 @@ class ManageProjectTest extends TestCase
      */
     public function a_user_can_create_a_project()
     {
-        $this->withoutExceptionHandling();
-
         $this->signIn();
 
         $this->get('/projects/create')->assertStatus(200);
 
-        $attributes = [
-            'title' => $this->faker->sentence,
-            'description' => $this->faker->sentence,
-            'notes' => 'General notes here.'
-        ];
-
-        $response = $this->post('/projects', $attributes);
-        $project = Project::where($attributes)->first();
-
-        $response->assertRedirect($project->path());
-
-        $this->get($project->path())
+        $this->followingRedirects()
+            ->post('/projects', $attributes = factory(Project::class)->raw())
             ->assertSee($attributes['title'])
             ->assertSee($attributes['description'])
             ->assertSee($attributes['notes']);
@@ -151,15 +140,31 @@ class ManageProjectTest extends TestCase
     /**
      * @test
      */
-    public function a_user_can_delete_a_project()
+    public function a_owner_can_delete_a_project()
     {
-        $this->withoutExceptionHandling();
         $project = ProjectFactory::ownedBy($this->signIn())->create();
 
         $this->delete($project->path())
             ->assertRedirect('/projects');
 
         $this->assertDatabaseMissing('projects', $project->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function a_user_cannot_delete_a_project()
+    {
+        $project = ProjectFactory::create();
+
+        $user = factory(User::class)->create();
+
+        $project->invite($user);
+
+        $this->actingAs($user);
+
+        $this->delete($project->path())
+            ->assertForbidden();
     }
 
     /**
