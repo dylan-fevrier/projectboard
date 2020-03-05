@@ -22,9 +22,9 @@
         </div>
 
         <div class="">
-            <button class="button button-blue" type="submit">Login</button>
+            <button class="button" type="submit">Login</button>
             @if (Route::has('password.request'))
-                <a href="{{ route('password.request') }}" class="underline ml-2">Forgot your password ?</a>
+                <a href="{{ route('password.request') }}" class="ml-2 text-default">Forgot your password ?</a>
             @endif
         </div>
 

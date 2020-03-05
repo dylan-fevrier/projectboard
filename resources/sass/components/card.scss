@@ -1,0 +1,7 @@
+.card {
+    @apply bg-card rounded-md shadow p-6;
+}
+
+.card-title {
+    @apply font-normal text-xl py-4 -ml-6 border-l-4 border-accent-light pl-5 mb-2;
+}

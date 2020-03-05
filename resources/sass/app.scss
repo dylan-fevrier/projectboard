@@ -1,27 +1,13 @@
-
 @tailwind base;
-
 @tailwind components;
-
 @tailwind utilities;
 
-.button {
-    @apply rounded-md text-sm py-2 px-4;
-}
+@import 'themes/light';
 
-.button-blue {
-    @apply bg-blue text-white;
-    box-shadow: 0 2px 7px 0 #b0eaff;
-}
-
-.card {
-    @apply bg-white rounded-md shadow p-6;
-}
-
-.card-title {
-    @apply font-normal text-xl py-4 -ml-6 border-l-4 border-blue-light pl-5 mb-2;
-}
+@import 'components/button';
+@import 'components/card';
 
 .input {
-    @apply w-full p-2 rounded border border-gray-400;
+    @apply w-full p-2 rounded border border-muted-light;
 }
+

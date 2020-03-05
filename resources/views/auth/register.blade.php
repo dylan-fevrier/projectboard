@@ -42,7 +42,7 @@
         </div>
 
         <div class="">
-            <button class="button button-blue" type="submit">Register</button>
+            <button class="button" type="submit">Register</button>
         </div>
 
     </form>

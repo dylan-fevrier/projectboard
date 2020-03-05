@@ -2,7 +2,7 @@
     <h3 class="card-title">
         <a href="{{ $project->path() }}">{{ $project->title }}</a>
     </h3>
-    <div class="text-grey flex-1 mb-4">
+    <div class="text-muted flex-1 mb-4">
         {{ \Illuminate\Support\Str::limit($project->description, 200) }}
     </div>
 

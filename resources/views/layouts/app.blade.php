@@ -19,9 +19,9 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body class="bg-grey-light">
+<body class="theme-light bg-page">
     <div id="app">
-        <nav class="bg-white">
+        <nav class="bg-header">
             <div class="container mx-auto">
                 <div class="flex justify-between items-center py-3">
                     <a class="navbar-brand" href="{{ url('/') }}">
@@ -44,21 +44,12 @@
                                 @endif
                             @else
                                 <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <img src="{{ \App\Helper\BladeHelper::url_gravatar(auth()->user()->email) }}" alt="{{ auth()->user()->name }}" class="rounded-full"> <span class="caret"></span>
+                                    <a class="flex items-center text-default no-underline text-sm" href="#">
+                                        <img
+                                            src="{{ \App\Helper\BladeHelper::url_gravatar(auth()->user()->email) }}"
+                                            alt="{{ auth()->user()->name }}"
+                                            class="rounded-full mr-3">
                                     </a>
-
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            {{ __('Logout') }}
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
-                                    </div>
                                 </li>
                             @endguest
                         </ul>

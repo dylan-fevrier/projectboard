@@ -6,7 +6,7 @@
         <div class="flex w-full justify-between items-end">
 
             <p class="text-grey text-sm font mr-2">
-                <a href="/projects" class="text-gray-700 hover:underline focus:underline">My Projects</a>
+                <a href="/projects" class="text-default hover:underline focus:underline">My Projects</a>
                  / {{ $project->title }}
             </p>
             <div class="flex">
