@@ -59,6 +59,7 @@ class User extends Authenticatable
             ->orWhereHas('members', function (Builder $query) {
                 $query->where('user_id', $this->id);
             })
+            ->latest()
             ->get();
     }
 }
