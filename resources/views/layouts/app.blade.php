@@ -43,14 +43,13 @@
                                     </li>
                                 @endif
                             @else
-                                <li class="nav-item dropdown">
-                                    <a class="flex items-center text-default no-underline text-sm" href="#">
-                                        <img
-                                            src="{{ \App\Helper\BladeHelper::url_gravatar(auth()->user()->email) }}"
-                                            alt="{{ auth()->user()->name }}"
-                                            class="rounded-full mr-3">
-                                    </a>
-                                </li>
+                                <a class="flex items-center text-default no-underline text-sm" href="#">
+                                    <img
+                                        src="{{ \App\Helper\BladeHelper::url_gravatar(auth()->user()->email) }}"
+                                        alt="{{ auth()->user()->name }}"
+                                        class="rounded-full mr-3">
+                                    {{ auth()->user()->name }}
+                                </a>
                             @endguest
                         </ul>
                     </div>
