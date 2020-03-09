@@ -68,7 +68,7 @@
 
                         <textarea
                             class="card w-full outline-none"
-                            style="min-height: 200px"
+                            style="min-height: 350px"
                             placeholder="Anything special that you want to make a note of ?"
                             name="notes">{{ $project->notes }}</textarea>
 
