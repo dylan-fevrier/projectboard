@@ -32,6 +32,7 @@
 
                         <!-- Right Side Of Navbar -->
                         <div class="flex items-center">
+                            <theme-switcher></theme-switcher>
                             <!-- Authentication Links -->
                             @guest
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -39,7 +40,6 @@
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 @endif
                             @else
-                                <theme-switcher></theme-switcher>
                                 <a class="flex items-center text-default no-underline text-sm" href="#">
                                     <img
                                         src="{{ \App\Helper\BladeHelper::url_gravatar(auth()->user()->email) }}"
