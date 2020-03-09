@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Project extends Model
 {
@@ -44,5 +45,13 @@ class Project extends Model
     public function members()
     {
         return $this->belongsToMany(User::class, 'project_members')->withTimestamps();
+    }
+
+    public function hasMember(int $userId)
+    {
+        return DB::table('project_members')
+            ->where('user_id', $userId)
+            ->where('project_id', $this->id)
+            ->exists();
     }
 }
