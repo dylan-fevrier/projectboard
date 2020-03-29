@@ -68,4 +68,28 @@ class InviteProjectTest extends TestCase
         $this->post($project->path() . '/tasks', ['body' => 'New Tasks'])
             ->assertRedirect($project->path());
     }
+
+    /**
+     * @test
+     */
+    public function a_project_cannot_invite_user_already_added()
+    {
+        $project = ProjectFactory::ownedBy($this->signIn())->create();
+
+        $project->invite($user = factory(User::class)->create());
+
+        $this->post($project->path(). '/invitations', ['email' => $user->email])
+            ->assertSessionHasErrors(['email' => 'User is already member of project.']);
+    }
+
+    /**
+     * @test
+     */
+    public function a_project_cannot_invite_a_owner()
+    {
+        $project = ProjectFactory::ownedBy($user = $this->signIn())->create();
+
+        $this->post($project->path() . '/invitations', ['email' => $user->email])
+            ->assertSessionHasErrors(['email' => 'User is already member of project.']);
+    }
 }
