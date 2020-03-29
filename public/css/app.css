@@ -7397,6 +7397,15 @@ video {
   background-color: var(--card-background-color);
 }
 
+.input-error {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  border-width: 1px;
+  border-color: var(--text-error-color);
+  background-color: var(--card-background-color);
+}
+
 body,
 button {
   color: var(--text-default-color);

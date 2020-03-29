@@ -12,6 +12,10 @@
     @apply w-full p-2 rounded border border-muted-light bg-card;
 }
 
+.input-error {
+    @apply w-full p-2 rounded border border-error bg-card;
+}
+
 body,
 button {
     @apply text-default;

@@ -50,11 +50,17 @@ class ProjectsController extends Controller
     /**
      * Persist project.
      *
-     * @return RedirectResponse|Redirector
+     * @return mixed
      */
     public function store()
     {
         $project = auth()->user()->projects()->create($this->validateProject());
+
+        if (request()->wantsJson()) {
+            return response()
+                ->json(['message' => $project->path()]);
+        }
+
         return redirect($project->path());
     }
 
