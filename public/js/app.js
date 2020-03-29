@@ -1995,7 +1995,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         title: '',
         description: '',
         tasks: [{
-          value: ''
+          body: ''
         }]
       },
       errors: {}
@@ -2004,7 +2004,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     addTask: function addTask() {
       this.form.tasks.push({
-        value: ''
+        body: ''
       });
     },
     submit: function submit() {
@@ -2022,7 +2022,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post('/projects', _this.form);
 
               case 3:
-                location = _context.sent.data.response;
+                location = _context.sent.data.message;
                 _context.next = 9;
                 break;
 
@@ -38315,19 +38315,19 @@ var render = function() {
                     {
                       name: "model",
                       rawName: "v-model",
-                      value: task.value,
-                      expression: "task.value"
+                      value: task.body,
+                      expression: "task.body"
                     }
                   ],
                   staticClass: "input mb-2",
                   attrs: { type: "text", placeholder: "New task" },
-                  domProps: { value: task.value },
+                  domProps: { value: task.body },
                   on: {
                     input: function($event) {
                       if ($event.target.composing) {
                         return
                       }
-                      _vm.$set(task, "value", $event.target.value)
+                      _vm.$set(task, "body", $event.target.value)
                     }
                   }
                 })

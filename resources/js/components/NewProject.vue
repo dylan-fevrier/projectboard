@@ -35,7 +35,7 @@
             <div class="flex-1 ml-4">
                 <div class="mb-4">
                     <label class="text-sm block mb-2">Let's add some tasks</label>
-                    <input type="text" class="input mb-2" placeholder="New task" v-for="task in form.tasks" v-model="task.value">
+                    <input type="text" class="input mb-2" placeholder="New task" v-for="task in form.tasks" v-model="task.body">
                 </div>
 
                 <button type="button" class="inline-flex items-center text-xs" @click="addTask">
@@ -66,7 +66,7 @@
                     title: '',
                     description: '',
                     tasks: [
-                        { value: ''}
+                        { body: ''}
                     ]
                 },
 
@@ -76,12 +76,12 @@
 
         methods: {
             addTask() {
-                this.form.tasks.push({value: ''})
+                this.form.tasks.push({body: ''})
             },
 
             async submit() {
                 try {
-                    location = (await axios.post('/projects', this.form)).data.response;
+                    location = (await axios.post('/projects', this.form)).data.message;
                 } catch (error) {
                     this.errors = error.response.data.errors;
                 }
