@@ -9,12 +9,12 @@
 
                     <input
                         type="text"
-                        :class="errors.title ? 'input-error' : 'input'"
+                        :class="form.errors.title ? 'input-error' : 'input'"
                         id="title"
                         name="title"
                         v-model="form.title">
 
-                    <span class="text-xs italic text-error" v-if="errors.title" v-text="errors.title[0]"></span>
+                    <span class="text-xs italic text-error" v-if="form.errors.title" v-text="form.errors.title[0]"></span>
                 </div>
 
                 <div class="mb-4">
@@ -22,13 +22,13 @@
 
                     <textarea
                         class="h-32"
-                        :class="errors.description ? 'input-error' : 'input'"
+                        :class="form.errors.description ? 'input-error' : 'input'"
                         id="description"
                         name="description"
                         v-model="form.description">
                     </textarea>
 
-                    <span class="text-xs italic text-error" v-if="errors.description" v-text="errors.description[0]"></span>
+                    <span class="text-xs italic text-error" v-if="form.errors.description" v-text="form.errors.description[0]"></span>
                 </div>
             </div>
 
@@ -52,25 +52,25 @@
         </div>
 
         <footer class="text-right">
-            <button class="mr-4" @click="$modal.hide('new-project')">Cancel</button>
+            <button class="mr-4" @click="reset">Cancel</button>
             <button class="button" @click="submit">Create project</button>
         </footer>
     </modal>
 </template>
 
 <script>
+    import ProjectBoardForm from '../ProjectBoardForm';
+
     export default {
         data () {
             return {
-                form: {
+                form: new ProjectBoardForm({
                     title: '',
                     description: '',
                     tasks: [
                         { body: ''}
                     ]
-                },
-
-                errors: {}
+                })
             }
         },
 
@@ -80,12 +80,14 @@
             },
 
             async submit() {
-                try {
-                    //console.log((await axios.post('/projects', this.form)).data)
-                    location = (await axios.post('/projects', this.form)).data.message;
-                } catch (error) {
-                    this.errors = error.response.data.errors;
-                }
+                this.form.post('/projects')
+                    .then(response => location = response.data.message)
+                    .catch(error => {}) ;
+            },
+
+            reset() {
+                this.$modal.hide('new-project');
+                this.form.reset();
             }
         }
     }
