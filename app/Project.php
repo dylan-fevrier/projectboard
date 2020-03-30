@@ -39,7 +39,11 @@ class Project extends Model
 
     public function addTasks(array $tasks)
     {
-        return $this->tasks()->createMany($tasks);
+        foreach ($tasks as $task) {
+            if (isset($task['body'])) {
+                $this->addTask($task);
+            }
+        }
     }
 
     public function invite(User $user)
