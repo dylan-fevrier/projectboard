@@ -35,18 +35,28 @@
                             <theme-switcher></theme-switcher>
                             <!-- Authentication Links -->
                             @guest
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                    <a class="nav-link mr-4" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 @if (Route::has('register'))
                                     <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                                 @endif
                             @else
-                                <a class="flex items-center text-default no-underline text-sm" href="#">
-                                    <img
-                                        src="{{ \App\Helper\BladeHelper::url_gravatar(auth()->user()->email) }}"
-                                        alt="{{ auth()->user()->name }}"
-                                        class="rounded-full mr-3">
-                                    {{ auth()->user()->name }}
-                                </a>
+                                <dropdown align="right" width="100%">
+
+                                    <template v-slot:trigger>
+                                        <button class="flex items-center text-default no-underline text-sm" href="#">
+                                            <img
+                                                src="{{ \App\Helper\BladeHelper::url_gravatar(auth()->user()->email) }}"
+                                                alt="{{ auth()->user()->name }}"
+                                                class="rounded-full mr-3">
+                                            {{ auth()->user()->name }}
+                                        </button>
+                                    </template>
+
+                                    <form id="logout-form" action="/logout" method="POST">
+                                        @csrf
+                                        <button type="submit" class="dropdown-menu-item w-full text-left">Logout</button>
+                                    </form>
+                                </dropdown>
                             @endguest
                         </div>
                     </div>
