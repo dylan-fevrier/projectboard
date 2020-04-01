@@ -32,7 +32,7 @@
 
                         <!-- Right Side Of Navbar -->
                         <div class="flex items-center">
-                            <theme-switcher></theme-switcher>
+                            {{--<theme-switcher></theme-switcher>--}}
                             <!-- Authentication Links -->
                             @guest
                                     <a class="nav-link mr-4" href="{{ route('login') }}">{{ __('Login') }}</a>
