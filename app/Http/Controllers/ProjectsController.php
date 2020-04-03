@@ -7,6 +7,7 @@ use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
+use Illuminate\Validation\Rule;
 use Illuminate\View\View;
 
 class ProjectsController extends Controller
@@ -101,14 +102,20 @@ class ProjectsController extends Controller
      * Delete project.
      *
      * @param Project $project
-     * @return RedirectResponse|Redirector
-     * @throws \Exception
+     * @return \Illuminate\Http\JsonResponse|RedirectResponse|Redirector
+     * @throws AuthorizationException
      */
     public function destroy(Project $project)
     {
         $this->authorize('owner', $project);
 
         $project->delete();
+
+        if (request()->wantsJson()) {
+            return response()
+                ->json(['message' => 'success'], 204);
+        }
+
         return redirect('/projects');
     }
 

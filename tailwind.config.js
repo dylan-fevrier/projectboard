@@ -20,6 +20,7 @@ const backgroundColor = {
     card: 'var(--card-background-color)',
     header: 'var(--header-background-color)',
     error: 'var(--error-background-color)',
+    danger: 'var(--danger-background-color)'
 };
 
 module.exports = {
