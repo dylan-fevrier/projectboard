@@ -1,9 +1,9 @@
 <template>
-    <modal name="new-project" classes="p-4 bg-card rounded-lg" height="auto">
+    <modal name="new-project" classes="p-4 bg-card rounded-lg" height="auto" adaptive="true" scrollable="true">
         <h1 class="font-normal mb-16 text-center text-2xl">Let's start something new</h1>
 
-        <div class="flex mb-8">
-            <div class="flex-1 mr-4">
+        <div class="md:flex mb-8">
+            <div class="flex-none md:flex-1 md:mr-4">
                 <div class="mb-4">
                     <label for="title" class="text-sm block mb-2">Title</label>
 
@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <div class="flex-1 ml-4">
+            <div class="flex-none md:flex-1 md:ml-4">
                 <div class="mb-4">
                     <label class="text-sm block mb-2">Let's add some tasks</label>
                     <input type="text" class="input mb-2" placeholder="New task" v-for="task in form.tasks" v-model="task.body">
