@@ -707,6 +707,10 @@ video {
   background-color: var(--error-background-color);
 }
 
+.bg-danger {
+  background-color: var(--danger-background-color);
+}
+
 .hover\:bg-page:hover {
   background-color: var(--page-background-color);
 }
@@ -727,6 +731,10 @@ video {
   background-color: var(--error-background-color);
 }
 
+.hover\:bg-danger:hover {
+  background-color: var(--danger-background-color);
+}
+
 .focus\:bg-page:focus {
   background-color: var(--page-background-color);
 }
@@ -745,6 +753,10 @@ video {
 
 .focus\:bg-error:focus {
   background-color: var(--error-background-color);
+}
+
+.focus\:bg-danger:focus {
+  background-color: var(--danger-background-color);
 }
 
 .bg-bottom {
@@ -7335,6 +7347,7 @@ video {
   --button-background-color: #47cdff;
   --header-background-color: white;
   --error-background-color: #FED7D7;
+  --danger-background-color: #C53030;
   --text-default-color: #222;
   --text-accent-color: #47cdff;
   --text-accent-light-color: #8ae2fe;
@@ -7349,6 +7362,7 @@ video {
   --button-background-color: #59b6f9;
   --header-background-color: #1f2027;
   --error-background-color: #C53030;
+  --danger-background-color: #C53030;
   --text-default-color: #fff;
   --text-accent-color: #47cdff;
   --text-accent-light-color: #8ae2fe;
@@ -7359,6 +7373,18 @@ video {
 
 .button {
   background-color: var(--button-background-color);
+  text-decoration: none;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  color: white;
+}
+
+.button-error {
+  background-color: var(--danger-background-color);
   text-decoration: none;
   border-radius: 0.5rem;
   font-size: 0.875rem;
@@ -7524,6 +7550,10 @@ button {
     background-color: var(--error-background-color);
   }
 
+  .sm\:bg-danger {
+    background-color: var(--danger-background-color);
+  }
+
   .sm\:hover\:bg-page:hover {
     background-color: var(--page-background-color);
   }
@@ -7544,6 +7574,10 @@ button {
     background-color: var(--error-background-color);
   }
 
+  .sm\:hover\:bg-danger:hover {
+    background-color: var(--danger-background-color);
+  }
+
   .sm\:focus\:bg-page:focus {
     background-color: var(--page-background-color);
   }
@@ -7562,6 +7596,10 @@ button {
 
   .sm\:focus\:bg-error:focus {
     background-color: var(--error-background-color);
+  }
+
+  .sm\:focus\:bg-danger:focus {
+    background-color: var(--danger-background-color);
   }
 
   .sm\:bg-bottom {
@@ -14232,6 +14270,10 @@ button {
     background-color: var(--error-background-color);
   }
 
+  .md\:bg-danger {
+    background-color: var(--danger-background-color);
+  }
+
   .md\:hover\:bg-page:hover {
     background-color: var(--page-background-color);
   }
@@ -14252,6 +14294,10 @@ button {
     background-color: var(--error-background-color);
   }
 
+  .md\:hover\:bg-danger:hover {
+    background-color: var(--danger-background-color);
+  }
+
   .md\:focus\:bg-page:focus {
     background-color: var(--page-background-color);
   }
@@ -14270,6 +14316,10 @@ button {
 
   .md\:focus\:bg-error:focus {
     background-color: var(--error-background-color);
+  }
+
+  .md\:focus\:bg-danger:focus {
+    background-color: var(--danger-background-color);
   }
 
   .md\:bg-bottom {
@@ -20940,6 +20990,10 @@ button {
     background-color: var(--error-background-color);
   }
 
+  .lg\:bg-danger {
+    background-color: var(--danger-background-color);
+  }
+
   .lg\:hover\:bg-page:hover {
     background-color: var(--page-background-color);
   }
@@ -20960,6 +21014,10 @@ button {
     background-color: var(--error-background-color);
   }
 
+  .lg\:hover\:bg-danger:hover {
+    background-color: var(--danger-background-color);
+  }
+
   .lg\:focus\:bg-page:focus {
     background-color: var(--page-background-color);
   }
@@ -20978,6 +21036,10 @@ button {
 
   .lg\:focus\:bg-error:focus {
     background-color: var(--error-background-color);
+  }
+
+  .lg\:focus\:bg-danger:focus {
+    background-color: var(--danger-background-color);
   }
 
   .lg\:bg-bottom {
@@ -27648,6 +27710,10 @@ button {
     background-color: var(--error-background-color);
   }
 
+  .xl\:bg-danger {
+    background-color: var(--danger-background-color);
+  }
+
   .xl\:hover\:bg-page:hover {
     background-color: var(--page-background-color);
   }
@@ -27668,6 +27734,10 @@ button {
     background-color: var(--error-background-color);
   }
 
+  .xl\:hover\:bg-danger:hover {
+    background-color: var(--danger-background-color);
+  }
+
   .xl\:focus\:bg-page:focus {
     background-color: var(--page-background-color);
   }
@@ -27686,6 +27756,10 @@ button {
 
   .xl\:focus\:bg-error:focus {
     background-color: var(--error-background-color);
+  }
+
+  .xl\:focus\:bg-danger:focus {
+    background-color: var(--danger-background-color);
   }
 
   .xl\:bg-bottom {

@@ -1,10 +1,15 @@
 <template>
-    <modal name="new-project" classes="p-4 bg-card rounded-lg" height="auto">
-        <h1 class="font-normal mb-16 text-center text-2xl">Let's start something new</h1>
+    <modal name="new-project"
+           classes="p-4 bg-card rounded-lg"
+           height="auto"
+           adaptive="true"
+           scrollable="true"
+           >
+        <h1 class="font-normal mb-4 md:mb-16 text-center text-2xl">Let's start something new</h1>
 
-        <div class="flex mb-8">
-            <div class="flex-1 mr-4">
-                <div class="mb-4">
+        <div class="md:flex mb-2 md:mb-8">
+            <div class="flex-none md:flex-1 md:mr-4">
+                <div class="mb-2 md:mb-4">
                     <label for="title" class="text-sm block mb-2">Title</label>
 
                     <input
@@ -17,11 +22,11 @@
                     <span class="text-xs italic text-error" v-if="form.errors.title" v-text="form.errors.title[0]"></span>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-2 md:mb-4">
                     <label for="description" class="text-sm block mb-2">Description</label>
 
                     <textarea
-                        class="h-32"
+                        class="h-16 md:h-32"
                         :class="form.errors.description ? 'input-error' : 'input'"
                         id="description"
                         name="description"
@@ -32,8 +37,8 @@
                 </div>
             </div>
 
-            <div class="flex-1 ml-4">
-                <div class="mb-4">
+            <div class="hidden md:block md:flex-1 md:ml-4">
+                <div class="mb-2 md:mb-4">
                     <label class="text-sm block mb-2">Let's add some tasks</label>
                     <input type="text" class="input mb-2" placeholder="New task" v-for="task in form.tasks" v-model="task.body">
                 </div>

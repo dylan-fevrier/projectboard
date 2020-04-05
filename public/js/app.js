@@ -1911,6 +1911,128 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteProject.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DeleteProject.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _ProjectBoardForm__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../ProjectBoardForm */ "./resources/js/ProjectBoardForm.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['id', 'path', 'title'],
+  data: function data() {
+    return {
+      form: new _ProjectBoardForm__WEBPACK_IMPORTED_MODULE_1__["default"]({
+        confirm: ''
+      })
+    };
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      return _asyncToGenerator(
+      /*#__PURE__*/
+      _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                if (!(_this.title.toLowerCase() != _this.form.confirm.toLowerCase())) {
+                  _context.next = 4;
+                  break;
+                }
+
+                _this.form.errors = {
+                  "confirm": ['The project\'s name is not correct']
+                };
+                _context.next = 7;
+                break;
+
+              case 4:
+                _context.next = 6;
+                return _this.form["delete"](_this.path);
+
+              case 6:
+                location = "/projects";
+
+              case 7:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    reset: function reset() {
+      this.$modal.hide(this.modalName);
+      this.form.reset();
+    }
+  },
+  computed: {
+    modalName: function modalName() {
+      return "delete-project" + this.id;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dropdown.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dropdown.vue?vue&type=script&lang=js& ***!
@@ -1992,6 +2114,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3361,6 +3488,134 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteProject.vue?vue&type=template&id=8306a8da&":
+/*!****************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/DeleteProject.vue?vue&type=template&id=8306a8da& ***!
+  \****************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "footer",
+    [
+      _c(
+        "form",
+        {
+          staticClass: "text-right",
+          attrs: { action: _vm.path, method: "post" }
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass: "text-xs",
+              attrs: { type: "submit" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.$modal.show(_vm.modalName)
+                }
+              }
+            },
+            [_vm._v("\n            Delete\n        ")]
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "modal",
+        {
+          attrs: {
+            name: _vm.modalName,
+            classes: "p-4 bg-card rounded-lg",
+            height: "auto",
+            adaptive: "true",
+            scrollable: "true"
+          }
+        },
+        [
+          _c("h1", { staticClass: "font-normal mb-8 text-center text-2xl" }, [
+            _vm._v("Delete project")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-8" }, [
+            _c("p", { staticClass: "mb-4" }, [
+              _vm._v(
+                "\n                Deleting the project is irreversible.\n                To confirm your choice, please enter the name of the project in the field below.\n            "
+              )
+            ]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.confirm,
+                  expression: "form.confirm"
+                }
+              ],
+              class: _vm.form.errors.confirm ? "input-error" : "input",
+              attrs: { type: "text", name: "confirm", placeholder: _vm.title },
+              domProps: { value: _vm.form.confirm },
+              on: {
+                keyup: function($event) {
+                  if (
+                    !$event.type.indexOf("key") &&
+                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                  ) {
+                    return null
+                  }
+                  return _vm.submit($event)
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "confirm", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.form.errors.confirm
+              ? _c("span", {
+                  staticClass: "text-xs italic text-error",
+                  domProps: { textContent: _vm._s(_vm.form.errors.confirm[0]) }
+                })
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("footer", { staticClass: "text-right" }, [
+            _c("button", { staticClass: "mr-4", on: { click: _vm.reset } }, [
+              _vm._v("Cancel")
+            ]),
+            _vm._v(" "),
+            _c(
+              "button",
+              { staticClass: "button-error", on: { click: _vm.submit } },
+              [_vm._v("Delete project")]
+            )
+          ])
+        ]
+      )
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08&":
 /*!***********************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Dropdown.vue?vue&type=template&id=ef782e08& ***!
@@ -3440,17 +3695,21 @@ var render = function() {
       attrs: {
         name: "new-project",
         classes: "p-4 bg-card rounded-lg",
-        height: "auto"
+        height: "auto",
+        adaptive: "true",
+        scrollable: "true"
       }
     },
     [
-      _c("h1", { staticClass: "font-normal mb-16 text-center text-2xl" }, [
-        _vm._v("Let's start something new")
-      ]),
+      _c(
+        "h1",
+        { staticClass: "font-normal mb-4 md:mb-16 text-center text-2xl" },
+        [_vm._v("Let's start something new")]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "flex mb-8" }, [
-        _c("div", { staticClass: "flex-1 mr-4" }, [
-          _c("div", { staticClass: "mb-4" }, [
+      _c("div", { staticClass: "md:flex mb-2 md:mb-8" }, [
+        _c("div", { staticClass: "flex-none md:flex-1 md:mr-4" }, [
+          _c("div", { staticClass: "mb-2 md:mb-4" }, [
             _c(
               "label",
               { staticClass: "text-sm block mb-2", attrs: { for: "title" } },
@@ -3487,7 +3746,7 @@ var render = function() {
               : _vm._e()
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "mb-4" }, [
+          _c("div", { staticClass: "mb-2 md:mb-4" }, [
             _c(
               "label",
               {
@@ -3506,7 +3765,7 @@ var render = function() {
                   expression: "form.description"
                 }
               ],
-              staticClass: "h-32",
+              staticClass: "h-16 md:h-32",
               class: _vm.form.errors.description ? "input-error" : "input",
               attrs: { id: "description", name: "description" },
               domProps: { value: _vm.form.description },
@@ -3531,10 +3790,10 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "flex-1 ml-4" }, [
+        _c("div", { staticClass: "hidden md:block md:flex-1 md:ml-4" }, [
           _c(
             "div",
-            { staticClass: "mb-4" },
+            { staticClass: "mb-2 md:mb-4" },
             [
               _c("label", { staticClass: "text-sm block mb-2" }, [
                 _vm._v("Let's add some tasks")
@@ -15919,6 +16178,7 @@ Vue.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_0___default.a);
 Vue.component('theme-switcher', __webpack_require__(/*! ./components/ThemeSwitcher */ "./resources/js/components/ThemeSwitcher.vue")["default"]);
 Vue.component('new-project', __webpack_require__(/*! ./components/NewProject */ "./resources/js/components/NewProject.vue")["default"]);
 Vue.component('dropdown', __webpack_require__(/*! ./components/Dropdown */ "./resources/js/components/Dropdown.vue")["default"]);
+Vue.component('delete-project', __webpack_require__(/*! ./components/DeleteProject */ "./resources/js/components/DeleteProject.vue")["default"]);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -15958,6 +16218,75 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteProject.vue":
+/*!***************************************************!*\
+  !*** ./resources/js/components/DeleteProject.vue ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _DeleteProject_vue_vue_type_template_id_8306a8da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DeleteProject.vue?vue&type=template&id=8306a8da& */ "./resources/js/components/DeleteProject.vue?vue&type=template&id=8306a8da&");
+/* harmony import */ var _DeleteProject_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DeleteProject.vue?vue&type=script&lang=js& */ "./resources/js/components/DeleteProject.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _DeleteProject_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _DeleteProject_vue_vue_type_template_id_8306a8da___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _DeleteProject_vue_vue_type_template_id_8306a8da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/DeleteProject.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteProject.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/DeleteProject.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteProject_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteProject.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteProject.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteProject_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/DeleteProject.vue?vue&type=template&id=8306a8da&":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/components/DeleteProject.vue?vue&type=template&id=8306a8da& ***!
+  \**********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteProject_vue_vue_type_template_id_8306a8da___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./DeleteProject.vue?vue&type=template&id=8306a8da& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/DeleteProject.vue?vue&type=template&id=8306a8da&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteProject_vue_vue_type_template_id_8306a8da___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_DeleteProject_vue_vue_type_template_id_8306a8da___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
 
 /***/ }),
 

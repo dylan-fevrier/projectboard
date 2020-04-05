@@ -7,12 +7,11 @@
     </div>
 
     @can ('owner', $project)
-        <footer>
-            <form action="{{ $project->path() }}"  method="post" class="text-right">
-                @csrf
-                @method('delete')
-                <button type="submit" class="text-xs">Delete</button>
-            </form>
-        </footer>
+        {{ $project->name }}
+        <delete-project
+            id="{{ $project->id }}"
+            path="{{ $project->path() }}"
+            title="{{ $project->title }}">
+        </delete-project>
     @endcan
 </div>
