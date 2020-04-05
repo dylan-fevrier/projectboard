@@ -21,7 +21,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/projects';
 
     /**
      * The path to the "project" route for this application.
