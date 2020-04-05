@@ -9,7 +9,11 @@
             </button>
         </form>
 
-        <modal :name="modalName" classes="p-4 bg-card rounded-lg" height="auto">
+        <modal :name="modalName"
+               classes="p-4 bg-card rounded-lg"
+               height="auto"
+               adaptive="true"
+               scrollable="true">
             <h1 class="font-normal mb-8 text-center text-2xl">Delete project</h1>
 
             <div class="mb-8">

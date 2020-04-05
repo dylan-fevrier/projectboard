@@ -1968,6 +1968,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['id', 'path', 'title'],
@@ -2110,6 +2114,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -3527,7 +3536,9 @@ var render = function() {
           attrs: {
             name: _vm.modalName,
             classes: "p-4 bg-card rounded-lg",
-            height: "auto"
+            height: "auto",
+            adaptive: "true",
+            scrollable: "true"
           }
         },
         [
@@ -3690,13 +3701,15 @@ var render = function() {
       }
     },
     [
-      _c("h1", { staticClass: "font-normal mb-16 text-center text-2xl" }, [
-        _vm._v("Let's start something new")
-      ]),
+      _c(
+        "h1",
+        { staticClass: "font-normal mb-4 md:mb-16 text-center text-2xl" },
+        [_vm._v("Let's start something new")]
+      ),
       _vm._v(" "),
-      _c("div", { staticClass: "md:flex mb-8" }, [
+      _c("div", { staticClass: "md:flex mb-2 md:mb-8" }, [
         _c("div", { staticClass: "flex-none md:flex-1 md:mr-4" }, [
-          _c("div", { staticClass: "mb-4" }, [
+          _c("div", { staticClass: "mb-2 md:mb-4" }, [
             _c(
               "label",
               { staticClass: "text-sm block mb-2", attrs: { for: "title" } },
@@ -3733,7 +3746,7 @@ var render = function() {
               : _vm._e()
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "mb-4" }, [
+          _c("div", { staticClass: "mb-2 md:mb-4" }, [
             _c(
               "label",
               {
@@ -3752,7 +3765,7 @@ var render = function() {
                   expression: "form.description"
                 }
               ],
-              staticClass: "h-32",
+              staticClass: "h-16 md:h-32",
               class: _vm.form.errors.description ? "input-error" : "input",
               attrs: { id: "description", name: "description" },
               domProps: { value: _vm.form.description },
@@ -3777,10 +3790,10 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "flex-none md:flex-1 md:ml-4" }, [
+        _c("div", { staticClass: "hidden md:block md:flex-1 md:ml-4" }, [
           _c(
             "div",
-            { staticClass: "mb-4" },
+            { staticClass: "mb-2 md:mb-4" },
             [
               _c("label", { staticClass: "text-sm block mb-2" }, [
                 _vm._v("Let's add some tasks")
